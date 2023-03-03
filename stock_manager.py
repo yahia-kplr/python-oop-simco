@@ -1,19 +1,5 @@
 from product_classes import *
-
-#################################
-
-def sep():
-    print("\n====================\n")
-    
-sep()
-
-# Prompt the user to create instances of the Biens_Consommation, Articles_Menagers, and Meubles classes
-#biens_consommation = prompt_for_instance(Biens_Consommation)
-#articles_menagers = prompt_for_instance(Articles_Menagers)
-"""
-chaussures = prompt_for_instance(Chaussures)
-print(vars(chaussures))
-"""
+import generator
 #################################
 
 class InventoryProductEntry:
@@ -25,7 +11,7 @@ class InventoryProductEntry:
 
 	def sell(self, quantity):
 		if self.quantity < quantity:
-			print(f"Not enough {self.product.name} stock")
+			print(f"Le stock du produit {self.product.name} est insuffisant pour satisfaire votre besoin")
 			return False
 		else:
 			self.quantity -= quantity
@@ -44,25 +30,27 @@ class InventoryProductEntry:
 class ProfitTracker:
 
 	def __init__(self):		
-		self.total_revenue=0
-		self.total_profit = 0
+
 		self.total_cost = 0
 		self.balance= 1000
 
 	def buy_product(self, product:Product,quantity):
 		if self.balance < product.cost * quantity:
-			print("Not enough money to restock")
+			print(f"Vous avez {self.balance} euros. Pour restocker {quantity} {product.name}, vous etes besoin de {product.cost * quantity} euros")
 			return False
 		else:
 			self.balance= self.balance - (product.cost * quantity)
-			print("balance après achat", self.balance)
+			print(f"balance après achat du produit {product.name} : {self.balance} euros")
 			return True
 	
 	def sell_product(self, product:Product,quantity):
 		self.balance= self.balance + (product.price * quantity)
-		print("balance après vente",self.balance)
+		print(f"balance après vente du produit {product.name}  : {self.balance} euros")
+
 
 	def calcul_profit(self):
+		self.total_revenue=0
+		self.total_profit = 0
 		for inventory_product_entry_key in inventory_manager.inventory:
 			self.total_revenue += inventory_manager.inventory[inventory_product_entry_key].sales
 			self.total_cost += inventory_manager.inventory[inventory_product_entry_key].expenses
@@ -101,17 +89,20 @@ class InventoryManager:
 		for inventory_product_entry_key in self.inventory:
 			if inventory_product_entry_key == product.name:
 				if self.inventory[inventory_product_entry_key].sell(quantity):
-					self.profit_tracker.sell_product(product, quantity)					
+					self.profit_tracker.sell_product(product, quantity)
+					print(f"Profit actuel après vente du produit {product.name} est : {self.profit_tracker.calcul_profit()} euros\n")
 				return
 		print(f"product {product.name} not found")
 
 	def restock_product(self, product:Product, quantity):
-		for inventory_product_entry_key in self.inventory:
-			if self.product_exists(product):
-				if (self.profit_tracker.buy_product(product, quantity)):
-					self.inventory[inventory_product_entry_key].restock(quantity)				
-				return
-		print(f"product {product.name} not found")
+		
+		if self.product_exists(product):
+			if (self.profit_tracker.buy_product(product, quantity)):
+				self.inventory[product.name].restock(quantity)
+				print(f"Profit actuel après restockage du produit {product.name} est : {self.profit_tracker.calcul_profit()} euros\n")
+		else:
+			self.add_product(product,quantity)
+			self.restock_product(product,quantity)
 
 	def get_product(self, name):
 		for inventory_product_entry_key in self.inventory:
@@ -125,27 +116,56 @@ class InventoryManager:
 
 #################################
 
-# Create an instance of the inventory manager and profit manager
+# Create an instance of the inventory manager
 inventory_manager = InventoryManager()
+
 # Add some products to the inventory
 inventory_manager.add_product(Canapes("materiau1", "couleur1", "dimension1", 100, 200, "marque1"), 10)
 inventory_manager.add_product(Chaise("materiau2", "couleur2", "dimension2", 50, 100, "marque2"), 20)
 inventory_manager.add_product(Table("materiau3", "couleur3", "dimension3", 150, 180,"BULTEX"),12)
+inventory_manager.add_product(Pantalon("M", "noir", "jeans", 150, 200,"Zara"),10)
+inventory_manager.add_product(Robe("S", "rose", "satin", 100, 140,"Zara"),5)
 
-inventory_manager.sell_product(inventory_manager.get_product("Chaise"),6)
+generator.sep()
+# Show the content of the inventory
+print("List of products in the inventory\n")
+inventory_manager.list_products()
 
-inventory_manager.restock_product(inventory_manager.get_product("Canapes"),4)
+# Remove product from the inventory
+inventory_manager.remove_product(Robe("S", "rose", "satin", 100, 140,"Zara"))
 
-#print(inventory_manager.revenue_tracker.get_revenue())
-
-#print(inventory_manager.revenue_tracker.get_sales())
-
+generator.sep()
+# Show the content of the inventory
+print("After Removing a product\n")
 inventory_manager.list_products()
 
 #################################
 
-#canap = Canapes("materiau1", "couleur1", "dimension1", 100, 200, "marque1")
+generator.sep()
+# Sell some products with existing quantity
 
-#profit_tracker= ProfitTracker()
-#print("Profit : ",p.calcul_profit())
-#print("Revenue : ",p.total_revenue, ", Cost : ",p.total_cost,", Profit : ",p.total_profit,", Balance : ",  p.balance)
+inventory_manager.sell_product(inventory_manager.get_product("Chaise"),6)
+inventory_manager.sell_product(inventory_manager.get_product("Canapes"),5)
+
+# Sell some products with unexisting quantity
+inventory_manager.sell_product(inventory_manager.get_product("Table"),20)
+
+#################################
+
+generator.sep()
+# Restock product not existing in the inventory
+inventory_manager.restock_product(Robe("S", "rose", "satin", 100, 140,"Zara"),5)
+
+generator.sep()
+
+# Restock product existing in the inventory
+inventory_manager.restock_product(Pantalon("M", "noir", "jeans", 150, 200,"Zara"),2)
+print("After Restocking a product\n")
+inventory_manager.list_products()
+
+generator.sep()
+
+# Restock product but not enough money
+inventory_manager.restock_product(Canapes("materiau1", "couleur1", "dimension1", 100, 200, "marque1"), 1000)
+
+#
