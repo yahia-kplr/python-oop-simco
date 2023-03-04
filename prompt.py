@@ -1,3 +1,5 @@
+import sys
+sys.path.extend(['.','..'])
 from inventory.stock_manager import *
 import json
 from unidecode import unidecode

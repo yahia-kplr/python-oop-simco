@@ -1,4 +1,5 @@
-
+import sys
+sys.path.extend(['.','..'])
 import streamlit as st
 from typing import Dict
 from inventory.stock_manager import *
