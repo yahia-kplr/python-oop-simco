@@ -2,7 +2,7 @@
 
 import json
 from unidecode import unidecode
-from product_classes import *
+from classes.product_classes import *
 import generator
 import utils
 

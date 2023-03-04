@@ -1,7 +1,7 @@
 
 import streamlit as st
 from typing import Dict
-from stock_manager import *
+from inventory.stock_manager import *
 import utils
 # from streamlitApp import InventoryManager
 # Define the Product, InventoryProductEntry, RevenueTracker, and InventoryManager classes as before

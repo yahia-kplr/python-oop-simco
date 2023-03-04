@@ -1,5 +1,9 @@
-from product_classes import *
-import utils
+import sys
+sys.path.append('.')
+from classes import *
+
+
+from typing import Dict
 #################################
 
 class InventoryProductEntry:
@@ -62,7 +66,7 @@ class ProfitTracker:
 
 #################################
 
-from typing import Dict
+
 
 class InventoryManager:
 	def __init__(self):
