@@ -1,5 +1,5 @@
 import sys
-sys.path.append(".")
+sys.path.extend(['.','..'])
 from classes.product_classes import Chaise, Pantalon
 from inventory.stock_manager import InventoryManager, ProfitTracker
 

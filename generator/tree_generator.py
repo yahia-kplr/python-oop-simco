@@ -1,7 +1,7 @@
 import treelib
 
 import sys
-sys.path.append("..")
+sys.path.extend(['.','..'])
 
 import utils
 

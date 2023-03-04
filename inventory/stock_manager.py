@@ -1,5 +1,5 @@
 import sys
-sys.path.append('.')
+sys.path.extend(['.','..'])
 from classes import *
 
 
