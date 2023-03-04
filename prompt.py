@@ -1,8 +1,8 @@
-from stock_manager import *
+from inventory.stock_manager import *
 import json
 from unidecode import unidecode
 import generator
-from product_classes import *
+from classes.product_classes import *
 import readline
 
 def main():

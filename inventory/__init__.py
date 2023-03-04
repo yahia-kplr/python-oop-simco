@@ -1,0 +1,1 @@
+from inventory.stock_manager import *
