@@ -3,12 +3,30 @@ import json
 from unidecode import unidecode
 import generator
 from product_classes import *
+import readline
 
 def main():
+
     inventory_manager = InventoryManager()
     json_data= generator.read_json("json_data.json")
     json_data = generator.trimspaces(json_data)
     json_dict = json.loads(str(unidecode(json_data)))
+
+    readline.set_completer_delims(' \t\n')
+    readline.parse_and_bind("tab: complete")
+
+    # Define a function to handle user input
+    def auto_complete(text, list):
+        matching_entry = [entry for entry in list if entry.startswith(text)]
+        if len(matching_entry) == 1:
+            entry_name = matching_entry[0]
+            remaining_text = entry_name[len(text):]
+            if remaining_text:          
+                readline.insert_text(remaining_text)
+                readline.redisplay()
+                
+    def set_autocomplete(list):
+        readline.set_completer(lambda text, state: auto_complete(text,list))
 
     while True:
         print("""
@@ -22,12 +40,10 @@ def main():
 			Q. Quit
 		""")
 
-        try:
-            choice = input("Enter your choice: ")
-            choice = choice.upper()
-        except ValueError:
-            print("Invalid choice. Please enter a number.")
-            continue
+        
+        choice = input("Enter your choice: ")
+        choice = choice.upper()
+        
 
         if choice == "A":
             
@@ -40,14 +56,16 @@ def main():
             utils.sep()
 
             utils.print_list(product_classes)
-
+            set_autocomplete(product_classes)
             category = input("Enter the category of the product: ")
             
             # Get the immediate children nodes of node 'B'
             children_nodes = class_tree.get_children_nodes(category)
             utils.print_list(children_nodes)
-            #print(f"{name} has been added to stock with a quantity of {quantity}.")
+            set_autocomplete(children_nodes)
             product_name = input("Enter your product choice: ")   
+            #print(f"{name} has been added to stock with a quantity of {quantity}.")
+                        
             product_entry = utils.prompt_for_instance(globals()[product_name])
             quantity = int(input("Enter quantity: "))
             inventory_manager.add_product(product_entry, quantity)
