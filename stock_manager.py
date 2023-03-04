@@ -57,6 +57,8 @@ class ProfitTracker:
 
 		self.total_profit = self.total_revenue - self.total_cost
 		return self.total_profit
+	def total_profit_res(self):
+		return self.total_profit
 
 #################################
 
@@ -99,6 +101,7 @@ class InventoryManager:
 			if (self.profit_tracker.buy_product(product, quantity)):
 				self.inventory[product.name].restock(quantity)
 				print(f"Profit actuel après restockage du produit {product.name} est : {self.profit_tracker.calcul_profit()} euros\n")
+				#return product.name,self.profit_tracker.calcul_profit()
 		else:
 			self.add_product(product,quantity)
 			self.restock_product(product,quantity)
