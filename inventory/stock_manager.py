@@ -52,21 +52,7 @@ class ProfitTracker:
 		print(f"balance après vente du produit {product.name}  : {self.balance} euros")
 
 
-	def calcul_profit(self):
-
-		self.total_revenue=0
-		self.total_profit = 0
-		for inventory_product_entry_key in inventory_manager.inventory:
-			self.total_revenue += inventory_manager.inventory[inventory_product_entry_key].sales
-			self.total_cost += inventory_manager.inventory[inventory_product_entry_key].expenses
-
-		self.total_profit = self.total_revenue - self.total_cost
-		return self.total_profit
-
-
 #################################
-
-
 
 class InventoryManager:
 	def __init__(self):
@@ -98,7 +84,7 @@ class InventoryManager:
 			if inventory_product_entry_key == product.name:
 				if self.inventory[inventory_product_entry_key].sell(quantity):
 					self.profit_tracker.sell_product(product, quantity)
-					print(f"Profit actuel après vente du produit {product.name} est : {self.profit_tracker.calcul_profit()} euros\n")
+					print(f"Profit actuel après vente du produit {product.name} est : {self.calcul_profit()} euros\n")
 				return
 		print(f"product {product.name} not found")
 
@@ -106,7 +92,7 @@ class InventoryManager:
 		if self.product_exists(product):
 			if (self.profit_tracker.buy_product(product, quantity)):
 				self.inventory[product.name].restock(quantity)
-				print(f"Profit actuel après restockage du produit {product.name} est : {self.profit_tracker.calcul_profit()} euros\n")
+				print(f"Profit actuel après restockage du produit {product.name} est : {self.calcul_profit()} euros\n")
 				#return product.name,self.profit_tracker.calcul_profit()
 		else:
 			self.add_product(product,quantity)
@@ -123,11 +109,21 @@ class InventoryManager:
 			print(self.inventory[inventory_product_entry_key])
 		return self.inventory
 
+	def calcul_profit(self):
 
+		self.profit_tracker.total_revenue=0
+		self.profit_tracker.total_profit = 0
+		for inventory_product_entry_key in self.inventory:
+			self.profit_tracker.total_revenue += self.inventory[inventory_product_entry_key].sales
+			self.profit_tracker.total_cost += self.inventory[inventory_product_entry_key].expenses
+
+		self.profit_tracker.total_profit = self.profit_tracker.total_revenue - self.profit_tracker.total_cost
+		return self.profit_tracker.total_profit
+	
 # 	#################################
 
- 	# Create an instance of the inventory manager
-inventory_manager = InventoryManager()
+# Create an instance of the inventory manager
+#inventory_manager = InventoryManager()
 
 # 	# Add some products to the inventory
 # inventory_manager.add_product(Canapes("materiau1", "couleur1", "dimension1", 100, 200, "marque1"), 10)

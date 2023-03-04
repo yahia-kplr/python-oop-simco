@@ -12,7 +12,6 @@ class TestInventoryManager(unittest.TestCase):
         self.chaise = Chaise("materiau2", "couleur2", "dimension2", 50, 100, "Ikea")
         self.pantalon = Pantalon("M", "noir", "jeans", 150, 200,"Zara")
 
-
     def test_add_product(self):
         self.inventory_manager.add_product(self.chaise, 5)
         self.assertIn(self.chaise.name, self.inventory_manager.inventory)

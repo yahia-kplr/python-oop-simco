@@ -1,7 +1,7 @@
 class Product:
 	def __init__(self, cost, price, marque):
-		self.cost = cost
-		self.price = price
+		self.cost = int(cost)
+		self.price = int(price)
 		self.marque = marque
 		self.name=type(self).__name__
 

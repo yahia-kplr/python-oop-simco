@@ -10,7 +10,7 @@ import streamlit as st
 
 
 def run():
-    inventory_manager = inventory_manager
+    inventory_manager = InventoryManager()
 
     #from PIL import Image
     #image = Image.open('ehtp.jpg')
@@ -33,15 +33,14 @@ def run():
     # @st.cache(persist=True,allow_output_mutation=True)
     if add_selectbox == 'A. Add a product to stock':
         name  = st.text_input("Enter the name of the product:")
-        cost = st.number_input('Enter the cost of the product: ')
-        price = st.number_input("Enter the price of the product: ")
-        marque = st.text_input("Enter the brand of the product: ")
+        #mettre à jour avec le mécanisme du prompt.
         quantity = st.number_input("Enter the initial quantity of the product:", 1, 100, step=1, key="quantity")
         product = Product(cost, price, marque)
         inventory_manager.add_product(product, quantity)
         #N_year_fact = st.number_input("Enter the initial quantity of the product:", 1, 100, step=1, key="N_year_fact")
         if st.button("Validation"):
             st.success(f"{name} has been added to stock with a quantity of {quantity}.", icon="✅")
+    
     elif add_selectbox == 'R. Restock a product quantity':
         name  = st.text_input("Enter the name of the product:")
         quantity = st.number_input("Enter the quantity to restock: ", 1, 100, step=1, key="quantity")
@@ -69,6 +68,7 @@ def run():
                 #st.success(f"Profit actuel après restockage du produit {name_inv} est : {valeur_calcul} euros\n", icon="✅")
             else:
                 st.warning(f"{name} is not in stock.", icon="⚠️")
+    
     elif add_selectbox == 'D. Remove a product from stock':
         name  = st.text_input("Enter the name of the product:")
         product = inventory_manager.get_product(name)
@@ -81,6 +81,7 @@ def run():
                 st.success(f"{name} has been removed from stock", icon="✅")
             else:
                 st.warning(f"{name} is not in stock.", icon="⚠️")
+    
     elif add_selectbox == 'L. List the products in stock':
         name  = st.text_input("Enter the name of the product:")
         quantity = st.number_input("Enter the quantity to sell: ", 1, 100, step=1, key="quantity")
@@ -94,6 +95,7 @@ def run():
                 #st.success(f"Profit actuel après restockage du produit {name_inv} est : {valeur_calcul} euros\n", icon="✅")
             else:
                 st.warning(f"{name} is not in stock.", icon="⚠️")
+    
     elif add_selectbox == 'B. Show the current balance':
         name  = st.text_input("Enter the name of the product:")
         quantity = st.number_input("Enter the quantity to sell: ", 1, 100, step=1, key="quantity")
