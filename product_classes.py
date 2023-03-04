@@ -57,7 +57,7 @@ class Ustensiles_Cuisine(Articles_Menagers):
 		super().__init__(cost, price, marque)
 		self.materiaux = materiaux
 
-class Casserole_Poêle(Ustensiles_Cuisine):
+class Casserole_Poele(Ustensiles_Cuisine):
 	def __init__(self, diametre, materiaux, cost, price, marque):
 		super().__init__(materiaux, cost, price, marque)
 		self.diametre = diametre
@@ -67,36 +67,38 @@ class Batterie_Cuisine(Ustensiles_Cuisine):
 		super().__init__(materiaux, cost, price, marque)
 		self.nombre_pieces = nombre_pieces
 
-class Vêtements_Accessoires(Biens_Consommation):
+class Vetements_Accessoires(Biens_Consommation):
 	def __init__(self, cost, price, marque):
 		super().__init__(cost, price, marque)
 
-class Vêtements(Vêtements_Accessoires):
+class Vetements(Vetements_Accessoires):
 	def __init__(self, taille, couleur, matiere, cost, price, marque):
 		super().__init__(cost, price, marque)
 		self.taille = taille
 		self.couleur = couleur
 		self.matiere = matiere
 
-class Haut(Vêtements):
+class Haut(Vetements):
 	def __init__(self, taille, couleur, matiere, cost, price, marque):
 		super().__init__(taille, couleur, matiere, cost, price, marque)
 
-class Pantalon(Vêtements):
+class Pantalon(Vetements):
 	def __init__(self, taille, couleur, matiere, cost, price, marque):
 		super().__init__(taille, couleur, matiere, cost, price, marque)
 
-class Robe(Vêtements):
+class Robe(Vetements):
 	def __init__(self, taille, couleur, matiere, cost, price, marque):
 		super().__init__(taille, couleur, matiere, cost, price, marque)
 
-class Accessoires(Vêtements_Accessoires):
+class Accessoires(Vetements_Accessoires):
 	def __init__(self, couleur, cost, price, marque):
 		super().__init__(cost, price, marque)
 		self.couleur = couleur
 
-class Chaussures(Vêtements_Accessoires):
+class Chaussures(Vetements_Accessoires):
 	def __init__(self, pointure, cost, price, marque):
 		super().__init__(cost, price, marque)
 		self.pointure = pointure
 
+import utils
+utils.print_list(globals())

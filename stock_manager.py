@@ -78,7 +78,9 @@ class InventoryManager:
 	def add_product(self, product:Product, quantity):
 		#if product exists inventory, increase quantity 
 		if self.product_exists(product):
-			self.inventory[product.name].quantity+=quantity
+			#self.inventory[product.name].quantity+=quantity
+			"Ce produit existe déja. (Une seule référence par produit)"
+			pass
 		else:
 			inventory_product_entry = InventoryProductEntry(product, quantity)
 			self.inventory[product.name]=inventory_product_entry

@@ -35,7 +35,7 @@
               "Ustensiles Cuisine": {
                 "materiaux": "",
                 "subclasses": {
-                  "Casserole Poêle": {
+                  "Casserole Poele": {
                     "diametre": ""
                   },
                   "Batterie Cuisine": {
@@ -45,9 +45,9 @@
               }
             }
           },
-          "Vêtements Accessoires": {
+          "Vetements Accessoires": {
             "subclasses": {
-              "Vêtements": {
+              "Vetements": {
                 "taille": "",
                 "couleur": "",
                 "matiere": "",
@@ -57,7 +57,7 @@
                   "Robe": {}
                 }
               },
-              "Accessoires": {
+              "Casquettes": {
                 "couleur": ""
               },
               "Chaussures": {

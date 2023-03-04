@@ -1,7 +1,14 @@
 from stock_manager import *
+import json
+from unidecode import unidecode
+import generator
+from product_classes import *
 
 def main():
     inventory_manager = InventoryManager()
+    json_data= generator.read_json("json_data.json")
+    json_data = generator.trimspaces(json_data)
+    json_dict = json.loads(str(unidecode(json_data)))
 
     while True:
         print("""
@@ -23,14 +30,27 @@ def main():
             continue
 
         if choice == "A":
-            name = input("Enter the name of the product: ")
-            cost = float(input("Enter the cost of the product: "))
-            price = float(input("Enter the price of the product: "))
-            marque = input("Enter the brand of the product: ")
-            quantity = int(input("Enter the initial quantity of the product: "))
-            product = Product(cost, price, marque)
-            inventory_manager.add_product(product, quantity)
-            print(f"{name} has been added to stock with a quantity of {quantity}.")
+            
+            utils.print_list
+                
+            class_tree = generator.generate_tree_hierarchy(json_dict)
+            
+            product_classes = class_tree.get_penultimate_nodes()
+        
+            utils.sep()
+
+            utils.print_list(product_classes)
+
+            category = input("Enter the category of the product: ")
+            
+            # Get the immediate children nodes of node 'B'
+            children_nodes = class_tree.get_children_nodes(category)
+            utils.print_list(children_nodes)
+            #print(f"{name} has been added to stock with a quantity of {quantity}.")
+            product_name = input("Enter your product choice: ")   
+            product_entry = utils.prompt_for_instance(globals()[product_name])
+            quantity = int(input("Enter quantity: "))
+            inventory_manager.add_product(product_entry, quantity)
 
         elif choice == "R":
             name = input("Enter the name of the product: ")

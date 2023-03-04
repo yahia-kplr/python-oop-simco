@@ -1,9 +1,14 @@
 import treelib
 
+import sys
+sys.path.append("..")
+
+import utils
+
 def generate_tree_hierarchy(json_dict):
     # define the tree
     global tree 
-    tree = treelib.Tree()
+    tree = utils.TreeExt()
 
     # define the root node
     root_node_id = "root"
