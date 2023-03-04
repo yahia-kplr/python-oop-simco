@@ -100,5 +100,3 @@ class Chaussures(Vetements_Accessoires):
 		super().__init__(cost, price, marque)
 		self.pointure = pointure
 
-import utils
-utils.print_list(globals())

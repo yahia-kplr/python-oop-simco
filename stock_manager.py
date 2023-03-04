@@ -49,6 +49,7 @@ class ProfitTracker:
 
 
 	def calcul_profit(self):
+
 		self.total_revenue=0
 		self.total_profit = 0
 		for inventory_product_entry_key in inventory_manager.inventory:
@@ -57,8 +58,7 @@ class ProfitTracker:
 
 		self.total_profit = self.total_revenue - self.total_cost
 		return self.total_profit
-	def total_profit_res(self):
-		return self.total_profit
+
 
 #################################
 
@@ -117,60 +117,61 @@ class InventoryManager:
 	def list_products(self):
 		for inventory_product_entry_key in self.inventory:
 			print(self.inventory[inventory_product_entry_key])
+		return self.inventory
 
-def test_code():
-	#################################
 
-	# Create an instance of the inventory manager
-	inventory_manager = InventoryManager()
+# 	#################################
 
-	# Add some products to the inventory
-	inventory_manager.add_product(Canapes("materiau1", "couleur1", "dimension1", 100, 200, "marque1"), 10)
-	inventory_manager.add_product(Chaise("materiau2", "couleur2", "dimension2", 50, 100, "marque2"), 20)
-	inventory_manager.add_product(Table("materiau3", "couleur3", "dimension3", 150, 180,"BULTEX"),12)
-	inventory_manager.add_product(Pantalon("M", "noir", "jeans", 150, 200,"Zara"),10)
-	inventory_manager.add_product(Robe("S", "rose", "satin", 100, 140,"Zara"),5)
+ 	# Create an instance of the inventory manager
+inventory_manager = InventoryManager()
 
-	utils.sep()
-	# Show the content of the inventory
-	print("List of products in the inventory\n")
-	inventory_manager.list_products()
+# 	# Add some products to the inventory
+# inventory_manager.add_product(Canapes("materiau1", "couleur1", "dimension1", 100, 200, "marque1"), 10)
+# inventory_manager.add_product(Chaise("materiau2", "couleur2", "dimension2", 50, 100, "marque2"), 20)
+# inventory_manager.add_product(Table("materiau3", "couleur3", "dimension3", 150, 180,"BULTEX"),12)
+# inventory_manager.add_product(Pantalon("M", "noir", "jeans", 150, 200,"Zara"),10)
+# inventory_manager.add_product(Robe("S", "rose", "satin", 100, 140,"Zara"),5)
 
-	# Remove product from the inventory
-	inventory_manager.remove_product(Robe("S", "rose", "satin", 100, 140,"Zara"))
+# utils.sep()
+# 	# Show the content of the inventory
+# print("List of products in the inventory\n")
+# inventory_manager.list_products()
 
-	utils.sep()
-	# Show the content of the inventory
-	print("After Removing a product\n")
-	inventory_manager.list_products()
+# 	# Remove product from the inventory
+# inventory_manager.remove_product(Robe("S", "rose", "satin", 100, 140,"Zara"))
 
-	#################################
+# utils.sep()
+# 	# Show the content of the inventory
+# print("After Removing a product\n")
+# inventory_manager.list_products()
 
-	utils.sep()
-	# Sell some products with existing quantity
+# 	#################################
 
-	inventory_manager.sell_product(inventory_manager.get_product("Chaise"),6)
-	inventory_manager.sell_product(inventory_manager.get_product("Canapes"),5)
+# utils.sep()
+# 	# Sell some products with existing quantity
 
-	# Sell some products with unexisting quantity
-	inventory_manager.sell_product(inventory_manager.get_product("Table"),20)
+# inventory_manager.sell_product(inventory_manager.get_product("Chaise"),6)
+# inventory_manager.sell_product(inventory_manager.get_product("Canapes"),5)
 
-	#################################
+# 	# Sell some products with unexisting quantity
+# inventory_manager.sell_product(inventory_manager.get_product("Table"),20)
 
-	utils.sep()
-	# Restock product not existing in the inventory
-	inventory_manager.restock_product(Robe("S", "rose", "satin", 100, 140,"Zara"),5)
+# 	#################################
 
-	utils.sep()
+# utils.sep()
+# 	# Restock product not existing in the inventory
+# inventory_manager.restock_product(Robe("S", "rose", "satin", 100, 140,"Zara"),5)
 
-	# Restock product existing in the inventory
-	inventory_manager.restock_product(Pantalon("M", "noir", "jeans", 150, 200,"Zara"),2)
-	print("After Restocking a product\n")
-	inventory_manager.list_products()
+# utils.sep()
 
-	utils.sep()
+# 	# Restock product existing in the inventory
+# inventory_manager.restock_product(Pantalon("M", "noir", "jeans", 150, 200,"Zara"),2)
+# print("After Restocking a product\n")
+# inventory_manager.list_products()
 
-	# Restock product but not enough money
-	inventory_manager.restock_product(Canapes("materiau1", "couleur1", "dimension1", 100, 200, "marque1"), 1000)
+# utils.sep()
 
-	#
+# 	# Restock product but not enough money
+# inventory_manager.restock_product(Canapes("materiau1", "couleur1", "dimension1", 100, 200, "marque1"), 1000)
+
+# 	#
