@@ -9,17 +9,17 @@
           "Articles Menagers": {
             "subclasses": {
               "Meubles": {
-                "materiaux": "",
+                "materiau": "",
                 "couleur": "",
-                "dimension": "",
+                "dimensions": "",
                 "subclasses": {
-                  "Canapes": {},
+                  "Canape": {},
                   "Chaise": {},
                   "Table": {}
                 }
               },
               "Appareils Electromenagers": {
-                "capacites": "",
+                "capacite": "",
                 "subclasses": {
                   "Refrigerateur": {
                     "efficacite": ""
@@ -35,7 +35,7 @@
               "Ustensiles Cuisine": {
                 "materiaux": "",
                 "subclasses": {
-                  "Casserole Poele": {
+                  "Casserole": {
                     "diametre": ""
                   },
                   "Batterie Cuisine": {
@@ -45,7 +45,7 @@
               }
             }
           },
-          "Vetements Accessoires": {
+          "Habillement": {
             "subclasses": {
               "Vetements": {
                 "taille": "",
@@ -57,7 +57,7 @@
                   "Robe": {}
                 }
               },
-              "Casquettes": {
+              "Casquette": {
                 "couleur": ""
               },
               "Chaussures": {

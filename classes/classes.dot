@@ -1,0 +1,45 @@
+digraph "classes" {
+rankdir=BT
+charset="utf-8"
+"classes.product_classes.Accessoires" [color="black", fontcolor="black", label=<{Accessoires|couleur<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Appareils_Electromenagers" [color="black", fontcolor="black", label=<{Appareils_Electromenagers|capacites<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Articles_Menagers" [color="black", fontcolor="black", label=<{Articles_Menagers|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Batterie_Cuisine" [color="black", fontcolor="black", label=<{Batterie_Cuisine|nombre_pieces<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Biens_Consommation" [color="black", fontcolor="black", label=<{Biens_Consommation|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Canape" [color="black", fontcolor="black", label=<{Canape|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Casserole_Poele" [color="black", fontcolor="black", label=<{Casserole_Poele|diametre<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Chaise" [color="black", fontcolor="black", label=<{Chaise|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Chaussures" [color="black", fontcolor="black", label=<{Chaussures|pointure<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Haut" [color="black", fontcolor="black", label=<{Haut|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Lave_linge" [color="black", fontcolor="black", label=<{Lave_linge|programme<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Lave_vaisselle" [color="black", fontcolor="black", label=<{Lave_vaisselle|programme<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Meubles" [color="black", fontcolor="black", label=<{Meubles|couleur<br ALIGN="LEFT"/>dimension<br ALIGN="LEFT"/>materiaux<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Pantalon" [color="black", fontcolor="black", label=<{Pantalon|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Product" [color="black", fontcolor="black", label=<{Product|cost : int<br ALIGN="LEFT"/>marque<br ALIGN="LEFT"/>name : str<br ALIGN="LEFT"/>price : int<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Refrigerateur" [color="black", fontcolor="black", label=<{Refrigerateur|efficacite<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Robe" [color="black", fontcolor="black", label=<{Robe|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Table" [color="black", fontcolor="black", label=<{Table|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Ustensiles_Cuisine" [color="black", fontcolor="black", label=<{Ustensiles_Cuisine|materiaux<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Vetements" [color="black", fontcolor="black", label=<{Vetements|couleur<br ALIGN="LEFT"/>matiere<br ALIGN="LEFT"/>taille<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Vetements_Accessoires" [color="black", fontcolor="black", label=<{Vetements_Accessoires|<br ALIGN="LEFT"/>|}>, shape="record", style="solid"];
+"classes.product_classes.Accessoires" -> "classes.product_classes.Vetements_Accessoires" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Appareils_Electromenagers" -> "classes.product_classes.Articles_Menagers" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Articles_Menagers" -> "classes.product_classes.Biens_Consommation" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Batterie_Cuisine" -> "classes.product_classes.Ustensiles_Cuisine" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Biens_Consommation" -> "classes.product_classes.Product" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Canape" -> "classes.product_classes.Meubles" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Casserole_Poele" -> "classes.product_classes.Ustensiles_Cuisine" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Chaise" -> "classes.product_classes.Meubles" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Chaussures" -> "classes.product_classes.Vetements_Accessoires" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Haut" -> "classes.product_classes.Vetements" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Lave_linge" -> "classes.product_classes.Appareils_Electromenagers" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Lave_vaisselle" -> "classes.product_classes.Appareils_Electromenagers" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Meubles" -> "classes.product_classes.Articles_Menagers" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Pantalon" -> "classes.product_classes.Vetements" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Refrigerateur" -> "classes.product_classes.Appareils_Electromenagers" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Robe" -> "classes.product_classes.Vetements" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Table" -> "classes.product_classes.Meubles" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Ustensiles_Cuisine" -> "classes.product_classes.Articles_Menagers" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Vetements" -> "classes.product_classes.Vetements_Accessoires" [arrowhead="empty", arrowtail="none"];
+"classes.product_classes.Vetements_Accessoires" -> "classes.product_classes.Biens_Consommation" [arrowhead="empty", arrowtail="none"];
+}

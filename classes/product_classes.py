@@ -14,23 +14,23 @@ class Articles_Menagers(Biens_Consommation):
 		super().__init__(cost, price, marque)
 
 class Meubles(Articles_Menagers):
-	def __init__(self, materiaux, couleur, dimension, cost, price, marque):
+	def __init__(self, materiaux, couleur, dimensions, cost, price, marque):
 		super().__init__(cost, price, marque)
 		self.materiaux = materiaux
 		self.couleur = couleur
-		self.dimension = dimension
+		self.dimensions = dimensions
 
-class Canapes(Meubles):
-	def __init__(self, materiaux, couleur, dimension, cost, price, marque):
-		super().__init__(materiaux, couleur, dimension, cost, price, marque)
+class Canape(Meubles):
+	def __init__(self, materiaux, couleur, dimensions, cost, price, marque):
+		super().__init__(materiaux, couleur, dimensions, cost, price, marque)
 
 class Chaise(Meubles):
-	def __init__(self, materiaux, couleur, dimension, cost, price, marque):
-		super().__init__(materiaux, couleur, dimension, cost, price, marque)
+	def __init__(self, materiaux, couleur, dimensions, cost, price, marque):
+		super().__init__(materiaux, couleur, dimensions, cost, price, marque)
 
 class Table(Meubles):
-	def __init__(self, materiaux, couleur, dimension, cost, price, marque):
-		super().__init__(materiaux, couleur, dimension, cost, price, marque)
+	def __init__(self, materiaux, couleur, dimensions, cost, price, marque):
+		super().__init__(materiaux, couleur, dimensions, cost, price, marque)
 
 class Appareils_Electromenagers(Articles_Menagers):
 	def __init__(self, capacites, cost, price, marque):
