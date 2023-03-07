@@ -44,7 +44,8 @@ def main():
 		""")
 
         
-        choice = input("Enter your choice: ")
+        # choice = input("Enter your choice: ")
+        choice="A"
         choice = choice.upper()
         
 
@@ -60,7 +61,7 @@ def main():
 
             utils.print_list(product_classes)
             set_autocomplete(product_classes)
-            category = input("Enter the category of the product: ")
+            category = 'Vetements'#input("Enter the category of the product: ")
             
             # Get the immediate children nodes of node 'B'
             children_nodes = class_tree.get_children_nodes(category)
